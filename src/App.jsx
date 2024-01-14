@@ -8,16 +8,20 @@ import Theme from './components/Theme';
 
 function App() {
   const [password, setPassword] = useState("");
+  const [previousPassword, setPreviousPassword] = useState("");
+  const [beforePreviousPassword, setBeforePreviousPassword] = useState("");
+  const [auxBeforePassword, setAuxBeforePassword] = useState("");
   const [copy, setCopy] = useState("Copiar");
   const [valueNumber, setValueNumber] = useState(6);
   const [check, setCheck] = useState();
   const [salute, setSalute] = useState("");
   const [currentTheme, setCurrentTheme] = useState("claro");
- 
 
   useEffect(() => {
-    console.log("Pagina renderizada")
-  }, [password, copy, valueNumber, check, salute, currentTheme])
+    setPreviousPassword(password)
+    setBeforePreviousPassword(previousPassword);
+    setAuxBeforePassword(beforePreviousPassword);
+  }, [password]);
 
   return (
 
@@ -54,6 +58,11 @@ function App() {
         <strong>Click no botão</strong> para gerar sua senha fácil, forte e sem esforço!</p>
       <div>
         <small>{!salute ? "" : salute + " ,tudo pronto!"}</small>
+        <ul>
+          <li>{password === "" ? "" : password}</li>
+          <li>{previousPassword === password ? beforePreviousPassword : previousPassword}</li>
+          <li>{beforePreviousPassword === previousPassword ? beforePreviousPassword : auxBeforePassword}</li>
+        </ul>
       </div>
     </main>
 
