@@ -5,6 +5,7 @@ import Generate from './components/Generate';
 import CopyToClipboard from './components/Clipboard';
 import InputSalute from './components/InputSalute';
 import Theme from './components/Theme';
+import ListPsw from './components/ListPws';
 
 function App() {
   const [password, setPassword] = useState("");
@@ -17,6 +18,7 @@ function App() {
   const [salute, setSalute] = useState("");
   const [currentTheme, setCurrentTheme] = useState("claro");
 
+  // Dispara o efeito colateral para as demais variaveis de estados.
   useEffect(() => {
     setPreviousPassword(password)
     setBeforePreviousPassword(previousPassword);
@@ -58,11 +60,13 @@ function App() {
         <strong>Click no botão</strong> para gerar sua senha fácil, forte e sem esforço!</p>
       <div>
         <small>{!salute ? "" : salute + " ,tudo pronto!"}</small>
-        <ul>
+        {/* <ul className="contentList">
           <li>{password === "" ? "" : password}</li>
           <li>{previousPassword === password ? beforePreviousPassword : previousPassword}</li>
           <li>{beforePreviousPassword === previousPassword ? beforePreviousPassword : auxBeforePassword}</li>
-        </ul>
+          
+        </ul> */}
+        <ListPsw auxBeforePassword={auxBeforePassword}/>
       </div>
     </main>
 
